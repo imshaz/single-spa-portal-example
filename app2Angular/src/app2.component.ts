@@ -1,72 +1,84 @@
-import { Component, forwardRef, Inject, OnDestroy } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+import { Component, forwardRef, Inject, OnDestroy } from "@angular/core";
+import { NgRedux } from "@angular-redux/store";
 import { IAppState, CounterActions } from "./store";
-import {Globals} from "./globals.service";
-import * as angularImg from "../assets/angular-logo.png";
-
+import { Globals } from "./globals.service";
+import * as angularImg from "assets/angular-logo.png";
+import * as hat from "./assets/hat.png";
 @Component({
-	selector: 'app2',
-	template: `
-		<div style="margin-top: 100px;">
-            <img [src]="angularImg" style="width: 100px;"/> <br />
-			This was rendered by App2 which is written in Angular 6
-		</div>
-        <br />
+  selector: "app2",
+  template: `<div style="margin-top: 100px">
+      <img [src]="angularImg" style="width: 100px" /> <br />
+      <img [src]="./assets/hat.png" style="width: 100px" /> <br />
 
-        <div>
-            <b> Count: {{ count }}</b><br/><br/>
-            <button (click)="increment()">local increment</button>&nbsp;Send a <b>local</b> increment event. This will
-            only increase the counter for the current app. <br/>
-            
-            <button (click)="decrement()">local decrement</button>&nbsp;Send a <b>local</b> decrement event. This will
-            only decrement the counter for the current app. <br/>
+      This was rendered by App2 which is written in Angular 6
+    </div>
+    <br />
 
-            
-            <button (click)="globalIncrement()">global increment</button>&nbsp;Send a <b>global</b> increment event.
-            This will increase the counter for the current app and all other apps that listen to this event. <br/>
-            
-            <button (click)="globalDecrement()">global decrement</button>&nbsp;Send a <b>global</b> decrement event.
-            This will increase the counter for the current app and all other apps that listen to this event. <br/>
-        </div>
-		
-        <br />
-		<a [routerLink]="['/subroute1']" routerLinkActive="active">Angular route 1</a>&nbsp;
-		<a [routerLink]="['/subroute2']" routerLinkActive="active">Angular route 2</a>
+    <div>
+      <b> Count: {{ count }}</b
+      ><br /><br />
+      <button (click)="increment()">local increment</button>&nbsp;Send a
+      <b>local</b> increment event. This will only increase the counter for the
+      current app. <br />
 
-		<router-outlet></router-outlet>
-	`,
+      <button (click)="decrement()">local decrement</button>&nbsp;Send a
+      <b>local</b> decrement event. This will only decrement the counter for the
+      current app. <br />
+
+      <button (click)="globalIncrement()">global increment</button>&nbsp;Send a
+      <b>global</b> increment event. This will increase the counter for the
+      current app and all other apps that listen to this event. <br />
+
+      <button (click)="globalDecrement()">global decrement</button>&nbsp;Send a
+      <b>global</b> decrement event. This will increase the counter for the
+      current app and all other apps that listen to this event. <br />
+    </div>
+
+    <br />
+    <a [routerLink]="['/subroute1']" routerLinkActive="active"
+      >Angular route 1</a
+    >&nbsp;
+    <a [routerLink]="['/subroute2']" routerLinkActive="active"
+      >Angular route 2</a
+    >
+
+    <router-outlet></router-outlet> `,
 })
 export class App2 {
-    count: number;
-    angularImg: any;
-    subscription;
+  count: number;
+  angularImg: any;
+  subscription;
 
-    constructor(
-        @Inject(forwardRef(() => NgRedux)) private ngRedux: NgRedux<IAppState>,
-        @Inject(forwardRef(() => CounterActions)) private actions: CounterActions,
-        @Inject(forwardRef(() => Globals)) private globals:Globals) {
-        this.subscription = ngRedux.select<number>('count')
-            .subscribe(newCount => this.count = newCount);
-        this.angularImg = angularImg;
-    }
+  imageUrl = "/hat.png";
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+  constructor(
+    @Inject(forwardRef(() => NgRedux)) private ngRedux: NgRedux<IAppState>,
+    @Inject(forwardRef(() => CounterActions)) private actions: CounterActions,
+    @Inject(forwardRef(() => Globals)) private globals: Globals
+  ) {
+    this.subscription = ngRedux
+      .select<number>("count")
+      .subscribe((newCount) => (this.count = newCount));
+    this.angularImg = angularImg;
+  }
 
-    increment() {
-        this.ngRedux.dispatch(this.actions.increment());
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
-    decrement() {
-        this.ngRedux.dispatch(this.actions.decrement());
-    }
+  increment() {
+    this.ngRedux.dispatch(this.actions.increment());
+  }
 
-    globalIncrement() {
-        this.globals.globalEventDistributor.dispatch(this.actions.increment());
-    }
+  decrement() {
+    this.ngRedux.dispatch(this.actions.decrement());
+  }
 
-    globalDecrement() {
-        this.globals.globalEventDistributor.dispatch(this.actions.decrement());
-    }
+  globalIncrement() {
+    this.globals.globalEventDistributor.dispatch(this.actions.increment());
+  }
+
+  globalDecrement() {
+    this.globals.globalEventDistributor.dispatch(this.actions.decrement());
+  }
 }
