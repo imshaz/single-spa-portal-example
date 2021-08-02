@@ -8,7 +8,7 @@ import * as angularImg from "../assets/angular-logo.png";
   selector: "app5",
   template: `
     <div style="margin-top: 100px;">
-      <img src="{{ './assets/angular-logo.png' }}" style="width: 100px;" />
+      <img src="{{ angularImg }}" style="width: 100px;" />
       <br />
       This was rendered by App5 which is written in Angular 6
     </div>

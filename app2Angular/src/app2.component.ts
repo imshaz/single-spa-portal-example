@@ -2,13 +2,12 @@ import { Component, forwardRef, Inject, OnDestroy } from "@angular/core";
 import { NgRedux } from "@angular-redux/store";
 import { IAppState, CounterActions } from "./store";
 import { Globals } from "./globals.service";
-import * as angularImg from "assets/angular-logo.png";
-import * as hat from "./assets/hat.png";
+import * as angularImg from "../assets/angular-logo.png";
+// import * as hat from "./assets/hat.png";
 @Component({
   selector: "app2",
   template: `<div style="margin-top: 100px">
       <img [src]="angularImg" style="width: 100px" /> <br />
-      <img [src]="./assets/hat.png" style="width: 100px" /> <br />
 
       This was rendered by App2 which is written in Angular 6
     </div>
