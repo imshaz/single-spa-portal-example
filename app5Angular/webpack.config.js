@@ -77,7 +77,7 @@ module.exports = function (env) {
     },
     output: {
       filename: "[name].js",
-      path: path.resolve(__dirname, "release"),
+      path: path.resolve(__dirname, "app5"),
       libraryTarget: "umd",
       library: "app5",
     },
@@ -87,19 +87,37 @@ module.exports = function (env) {
           test: /\.css$/,
           use: ["style-loader", "css-loader", "postcss-loader"],
         },
-        {
-          test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-          loader: "file-loader?name=app5/assets/[name].[ext]",
-        },
+
         {
           test: /\.html$/i,
           use: [
             // ...The other file-loader and extract-loader go here.
             {
-              loader: "html-loader",
+              loader: "file-loader",
               options: {
                 // THIS will resolve relative URLs to reference from the app/ directory
-                root: path.resolve(__dirname, "release"),
+
+                name: "[name].html",
+              },
+            },
+            {
+              loader: "extract-loader",
+            },
+            {
+              loader: "html-loader",
+              options: {
+                attrs: ["img:src"],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "app5/assets/[name].[ext]",
               },
             },
           ],

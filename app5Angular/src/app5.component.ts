@@ -10,7 +10,7 @@ import * as angularImg from "../assets/angular-logo.png";
     <div style="margin-top: 100px;">
       <img src="{{ angularImg }}" style="width: 100px;" />
       <br />
-      <img src="/assets/angular-logo.png" style="width: 100px;" />
+      <img src="app5/assets/angular-logo.png" style="width: 100px;" />
       This was rendered by App5 which is written in Angular 6
     </div>
     <br />

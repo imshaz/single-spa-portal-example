@@ -79,7 +79,7 @@ module.exports = function (env) {
       filename: "[name].js",
       path: path.resolve(__dirname, "release"),
       libraryTarget: "umd",
-      library: "app5",
+      library: "app6665",
     },
     module: {
       rules: [
