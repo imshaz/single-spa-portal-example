@@ -47,16 +47,16 @@ export function unmount(props) {
     }
     spaProps.bootstrappedModule.destroy();
     delete spaProps.bootstrappedModule;
-    resolve();
+    resolve(0);
   });
 }
 
 function createDomElement() {
   // Make sure there is a div for us to render into
-  let el = window.document.getElementById('app5');
+  let el = window.document.getElementById('app6');
   if (!el) {
-    el = window.document.createElement('app5');
-    el.id = 'app5';
+    el = window.document.createElement('app6');
+    el.id = 'app6';
     window.document.body.appendChild(el);
   }
 

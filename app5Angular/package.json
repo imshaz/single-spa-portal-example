@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Angular App that will be bundled into a library to be loaded on demand by a simpleSPA Portal App",
   "scripts": {
-    "watch:portal": "webpack-dev-server --port 9005",
+    "watch:portal": "webpack-dev-server --port 9005 --watch",
     "build:portal": "webpack -p --progress --env.prod"
   },
   "author": "Michael Ruecker",
@@ -22,6 +22,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.5.2",
     "file-loader": "^1.1.11",
+    "html-loader": "^2.1.2",
     "ts-loader": "^4.4.2",
     "typescript": "~2.7.2",
     "uglifyjs-webpack-plugin": "^1.2.7",

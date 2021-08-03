@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Portal app that builds the foundation of multiple SPAs",
   "scripts": {
+    "start": "concurrently \"cd ../app1React && npm run watch:portal\" \"cd ../app2Angular && npm run watch:portal\" \"cd ../app3Angular1 && npm run watch:portal\" \"cd ../app4vue && npm run watch:portal\" \"cd ../app5Angular && npm run watch:portal\" \"cd ../angular-app-cli && npm run watch:portal\" \"webpack-dev-server --port 9000\" ",
     "watch": "webpack-dev-server --port 9000",
     "build": "webpack -p --progress"
   },
@@ -20,6 +21,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "concurrently": "^6.2.0",
     "copy-webpack-plugin": "^4.5.1",
     "single-spa": "^4.0.0",
     "systemjs": "^0.21.4",
