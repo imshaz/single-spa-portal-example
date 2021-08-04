@@ -1,3 +1,4 @@
+// @ts-ignore
 const path = require("path");
 const ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -133,6 +134,8 @@ module.exports = function (env) {
           },
         },
 
+        { test: /\.ts?x$/, loader: "ts-loader", exclude: ["node_modules"] },
+
         {
           exclude: [path.join(process.cwd(), "src/styles.scss")],
           test: /\.scss$|\.sass$/,
@@ -173,7 +176,7 @@ module.exports = function (env) {
       ],
     },
     resolve: {
-      extensions: [".ts", ".js"],
+      extensions: [".ts", ".tsx", ".js"],
       modules: [__dirname, "node_modules"],
     },
     mode: "development",
