@@ -30,7 +30,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^2.1.2",
     "ts-loader": "^4.4.2",
-    "typescript": "~2.7.2",
+    "typescript": "~3.5.3",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.5",
